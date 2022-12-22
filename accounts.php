@@ -15,6 +15,12 @@ if (!file_exists(__DIR__ . '/users.json')) {
     $users = json_decode(file_get_contents(__DIR__ . '/users.json'));
 }
 
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $users = array_filter((array) $users, fn ($user) => $user->id != $id);
+    file_put_contents(__DIR__ . '/users.json', json_encode($users));
+}
+
 require(__DIR__ . '/inc/header.php');
 ?>
 
@@ -37,9 +43,9 @@ require(__DIR__ . '/inc/header.php');
                         <i class="fa-solid fa-chevron-down btn-expand"></i>
                     </div>
                     <div class="user-footer flex">
-                        <p class="acc-id"><?= $user->id ?></p>
-                        <p class="acc-idnum"><?= $user->id_num ?></p>
-                        <p class="acc-bank"><?= $user->bank_acc ?></p>
+                        <p class="acc-id"><span class="highlight">ID: </span><?= $user->id ?></p>
+                        <p class="acc-idnum"><span class="highlight">Asmens Kodas: </span><?= $user->id_num ?></p>
+                        <p class="acc-bank"><span class="highlight">Sąskaitos Nr. : </span><?= $user->bank_acc ?></p>
                     </div>
                 </article>
             <?php endforeach ?>
