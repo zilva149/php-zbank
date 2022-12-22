@@ -1,0 +1,331 @@
+/* GLOBAL STYLES */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+    --lgray : #e1e1f3;
+    --dgray: #9292ae;
+    --orange: #ea4c3c;
+    --dblue: #2a2a51;
+    --lblue: #747399;
+    --pink: #dba09e;
+}
+
+/* CSS RESET */
+
+body,
+body *,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100vh;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: var(--dblue);
+}
+
+body {
+    height: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+p {
+    font-size: 1.6rem;
+}
+
+h1 {
+    font-size: 3.2rem;
+}
+
+h2 {
+    font-size: 2.6rem;
+}
+
+h3 {
+    font-size: 2.2rem;
+}
+
+h4 {
+    font-size: 2.0rem;
+}
+
+h5 {
+    font-size: 1.6rem;
+}
+
+h6 {
+    font-size: 1.2rem;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+label,
+button,
+textarea,
+select {
+    font-family: inherit;
+    font-size: 1.6rem;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.4rem;
+}
+
+/* GLOBAL COMPONENTS */
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 4rem;
+    text-transform: capitalize;
+}
+
+.form {
+    width: 600px;
+    max-width: 90%;
+    background-color: #ccc;
+    border-radius: 10px;
+    padding: 8rem 0;
+}
+
+.input {
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    padding: 0.5rem 1rem;
+}
+
+.btn {
+    background-color: var(--orange);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    color: #fff;
+    padding: 0.75rem 1.75rem;
+    cursor: pointer;
+    transition: all ease-out 0.25s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn:active {
+    transform: scale(0.9);
+}
+
+/* HEADER */
+
+.header {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: var(--lgray);
+    padding: 0 1.5rem;
+}
+
+.header-logo {
+    position: relative;
+    font-size: 4rem;
+    margin-bottom: 6rem;
+}
+
+.header-logo::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 65%;
+    height: 5px;
+    background-color: var(--orange);
+    border-radius: 10px;
+}
+
+.header-logo::before {
+    content: 'Z';
+    color: var(--orange);
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    right: 35%;
+    width: 5px;
+    height: 130%;
+    background-color: var(--orange);
+    border-radius: 10px;
+}
+
+.header-logo::before::content {
+    transform: translateX(-50%);
+}
+
+.nav {
+    align-items: flex-start;
+    margin-bottom: 6rem;
+}
+
+.nav-link {
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    color: inherit;
+    transition: color ease-out 0.25s;
+}
+
+.nav-link i {
+    margin: 0 2rem 0 1rem;
+    transform: scale(2);
+}
+
+
+.nav-link:hover {
+    color: var(--lblue);
+}
+
+.contacts-title {
+    font-size: 2.6rem;
+    text-transform: capitalize;
+    margin-bottom: 3rem;
+}
+
+.contacts-info {
+    margin-bottom: 6rem;
+}
+
+.contacts-info > p {
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+}
+
+.contacts-info i {
+    width: 15px;
+    text-align: center;
+    margin: 0 2rem 0 1rem;
+    transform: scale(1.5);
+}
+
+.logout-btn {
+    position: absolute;
+    bottom: 50px;
+    left: 10%;
+    background-color: transparent;
+    border: none;
+}
+
+.logout-btn a {
+    color: var(--dblue);
+    text-transform: capitalize;
+    font-size: 1.8rem;
+    transition: color ease-out 0.25s;
+}
+
+.logout-btn a:hover {
+    color: var(--lblue);
+    text-transform: capitalize;
+    font-size: 1.8rem;
+}
+
+.logout-btn i {
+    margin: 0 2rem 0 1rem;
+    transform: scale(1.5);
+}
+
+/* FOOTER */
+
+.footer {
+    height: 10%;
+}
+
+.copyright {
+    text-transform: capitalize;
+    text-align: end;
+}
+
+/* ACCOUNT LIST - MAIN */
+
+.main-account {
+    height: 100%;
+    width: 80%;
+    padding: 2rem 0;
+}
+
+.main-account > .container {
+    height: 90%;
+}
+
+.user {
+    padding: 2rem;
+}
+
+.user-header {
+    justify-content: flex-start;
+    padding: 2rem;
+}
+
+.user-footer {
+    justify-content: flex-start;
+    padding: 2rem;
+}
+
+.btn-expand {
+    transform: scale(1.5);
+    cursor: pointer;
+    transition: color ease-out 0.25s;
+}
+
+.btn-expand:hover {
+    color: var(--dgray);
+}
