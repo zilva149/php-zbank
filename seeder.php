@@ -5,9 +5,9 @@ $admin = [
 ];
 
 $users = [
-    ['id' => rand(1000000, 9999999), 'id_num' => '39502150645', 'bank_acc' => 'LT01 2345 6798 0123 4567', 'name' => 'Tomas', "surname" => 'Blaževičius', 'money' => number_format(2695, 2, '.', ',')],
-    ['id' => rand(1000000, 9999999), 'id_num' => '38709251195', 'bank_acc' => 'LT01 2345 6986 4562 0066', 'name' => 'Eglė', "surname" => 'Kaminskaitė', 'money' => number_format(1399, 2, '.', ',')],
-    ['id' => rand(1000000, 9999999), 'id_num' => '39502150645', 'bank_acc' => 'LT01 2345 6032 8569 7741', 'name' => 'Matas', "surname" => 'Vieversys', 'money' => number_format(14822, 2, '.', ',')]
+    ['id' => rand(1000000, 9999999), 'id_num' => '39502150645', 'bank_acc' => 'LT01 6249 9798 0123 4567', 'name' => 'Tomas', "surname" => 'Blaževičius', 'money' => 2695],
+    ['id' => rand(1000000, 9999999), 'id_num' => '38709251195', 'bank_acc' => 'LT56 6249 9986 4562 0066', 'name' => 'Eglė', "surname" => 'Kaminskaitė', 'money' => 1399],
+    ['id' => rand(1000000, 9999999), 'id_num' => '39502150645', 'bank_acc' => 'LT44 6249 9032 8569 7741', 'name' => 'Matas', "surname" => 'Vieversys', 'money' => 14822]
 ];
 
 file_put_contents(__DIR__ . '/admin.json', json_encode($admin));

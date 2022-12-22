@@ -22,24 +22,39 @@ if (!file_exists(__DIR__ . '/users.json')) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $amount = (float) $_POST['amount'];
 
-    if ($amount > (float) $user->money) {
-        $modal = 'error';
-        $modal_message = 'Suma viršija turimas lėšas';
-        $modal_color = '#f01616';
+    if ($amount > $user->money) {
+        $_SESSION['modal'] = [
+            'name' => 'error',
+            'modal_message' => 'Suma viršija turimas lėšas',
+            'modal_color' => '#f01616'
+        ];
+
+        header("Location: http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=$id");
+        die;
     } else if ($amount > 0) {
-        (float) $user->money = number_format((float) $user->money - $amount, 2, '.', ',');
+        $user->money -= $amount;
 
         $users = array_map(fn ($el) => $el->id == $user->id ? $user : $el, $users);
 
         file_put_contents(__DIR__ . '/users.json', json_encode($users));
 
-        $modal = 'success';
-        $modal_message = 'Sėkmingai nuskaičiuotos lėšos';
-        $modal_color = '#35bd0f';
+        $_SESSION['modal'] = [
+            'name' => 'success',
+            'modal_message' => 'Sėkmingai nuskaičiuotos lėšos',
+            'modal_color' => '#35bd0f'
+        ];
+
+        header("Location: http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=$id");
+        die;
     } else {
-        $modal = 'error';
-        $modal_message = 'Negalima nuskaičiuoti nulinės arba negatyvios sumos';
-        $modal_color = '#f01616';
+        $_SESSION['modal'] = [
+            'name' => 'error',
+            'modal_message' => 'Negalima nuskaičiuoti nulinės arba negatyvios sumos',
+            'modal_color' => '#f01616'
+        ];
+
+        header("Location: http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=$id");
+        die;
     }
 }
 
@@ -47,13 +62,18 @@ require(__DIR__ . '/inc/header.php');
 ?>
 
 <main class="main-add-money flex flex-col">
-    <?php if (isset($modal)) :
+    <div class="admin flex">
+        <i class="fa-solid fa-user"></i>
+        <?= $_SESSION['admin'] ?>
+    </div>
+    <?php if (isset($_SESSION['modal'])) :
         require(__DIR__ . '/inc/modal.php');
+        unset($_SESSION['modal']);
     endif ?>
     <section class="add-card flex flex-col">
         <div class="add-card-info flex">
             <p class="add-card-name"><?= $user->name . ' ' . $user->surname ?></p>
-            <p class="add-card-money">&#8364;<?= $user->money ?></p>
+            <p class="add-card-money">&#8364;<?= number_format($user->money, 2, '.', ',') ?></p>
         </div>
         <form action="http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=<?= $id ?>" method="post" class="add-card-form flex">
             <input type="text" name="amount" class="add-card-input input" autocomplete="off" placeholder="Įveskite sumą...">
