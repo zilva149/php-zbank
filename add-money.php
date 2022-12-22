@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$title = 'ZBank | Pridėti lėšų';
+$title = 'ZBank | Pridėti Lėšų';
 $_SESSION['admin'] = 'Jonas';
 
 if (!isset($_SESSION['admin'])) {
@@ -22,18 +22,18 @@ if (!file_exists(__DIR__ . '/users.json')) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $amount = (float) $_POST['amount'];
     if ($amount > 0) {
-        (float) $user->money = number_format($user->money + $amount, 2, '.', ',');
+        (float) $user->money = number_format((float) $user->money + $amount, 2, '.', ',');
 
         $users = array_map(fn ($el) => $el->id == $user->id ? $user : $el, $users);
 
         file_put_contents(__DIR__ . '/users.json', json_encode($users));
 
         $modal = 'success';
-        $modal_message = 'sėkmingai pridėta lėšų';
+        $modal_message = 'Sėkmingai pridėta lėšų';
         $modal_color = '#35bd0f';
     } else {
         $modal = 'error';
-        $modal_message = 'negalima pridėti nulinės arba negatyvios sumos!';
+        $modal_message = 'Negalima pridėti nulinės arba negatyvios sumos';
         $modal_color = '#f01616';
     }
 }
@@ -52,9 +52,7 @@ require(__DIR__ . '/inc/header.php');
         </div>
         <form action="http://localhost:8080/intro/personal-projects/php-zbank/add-money.php?id=<?= $id ?>" method="post" class="add-card-form flex">
             <input type="text" name="amount" class="add-card-input input" autocomplete="off" placeholder="Įveskite sumą...">
-            <button type="submit" class="btn submit-btn">
-                <i class="fa-regular fa-plus"></i>
-            </button>
+            <button type="submit" class="btn submit-btn">pridėti</button>
         </form>
     </section>
 </main>
