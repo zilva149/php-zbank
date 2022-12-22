@@ -2,6 +2,8 @@
 session_start();
 
 $title = 'ZBank | Sąskaitų Sąrašas';
+$active = 'acc-list';
+
 $_SESSION['admin'] = 'Jonas';
 
 if (!isset($_SESSION['admin'])) {

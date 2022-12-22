@@ -146,7 +146,8 @@ a {
     border: none;
     border-radius: 10px;
     outline: none;
-    padding: 0.5rem 1rem;
+    padding: 1rem 1.75rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .btn {
@@ -219,6 +220,7 @@ a {
 }
 
 .nav-link {
+    position: relative;
     font-size: 1.4rem;
     text-transform: capitalize;
     color: inherit;
@@ -233,6 +235,17 @@ a {
 
 .nav-link:hover {
     color: var(--lblue);
+}
+
+.active::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: -7px;
+    height: 175%;
+    width: 3px;
+    border-radius: 10px;
+    background-color: var(--orange);
 }
 
 .contacts-title {
@@ -295,6 +308,19 @@ a {
     text-align: end;
 }
 
+/* MODAL */
+
+.modal {
+    padding: 2rem 4rem;
+    border-radius: 10px;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.modal i {
+    transform: scale(2);
+}
+
 /* ACCOUNT LIST - MAIN */
 
 .main-account {
@@ -334,4 +360,33 @@ a {
 
 .btn-expand:hover {
     color: var(--dgray);
+}
+
+/* ADD MONEY - MAIN */
+
+.main-add-money {
+    height: 100%;
+    width: 80%;
+}
+
+.add-card {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    justify-content: space-between;
+    padding: 4rem 3rem;
+}
+
+.add-card p {
+    font-size: 2rem;
+}
+
+.submit-btn {
+    padding: 1rem 1.75rem;
+}
+
+/* WITHDRAW MONEY - MAIN */
+
+.main-withdraw-money {
+    height: 100%;
+    width: 80%;
 }

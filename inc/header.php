@@ -19,11 +19,11 @@
             <div class="container">
                 <div class="header-logo">ZBank</div>
                 <nav class="nav flex flex-col">
-                    <a href="http://localhost:8080/intro/php-zbank/2-banku-bankas/accounts.php" class="nav-link">
+                    <a href="http://localhost:8080/intro/personal-projects/php-zbank/accounts.php" class="nav-link <?= $active == 'acc-list' ? 'active' : '' ?>">
                         <i class="fa-solid fa-list-ul"></i>
                         sąskaitų sąrašas
                     </a>
-                    <a href="http://localhost:8080/intro/php-zbank/2-banku-bankas/add-account.php" class="nav-link">
+                    <a href="http://localhost:8080/intro/personal-projects/php-zbank/add-account.php" class="nav-link <?= $active == 'add-acc' ? 'active' : '' ?>">
                         <i class="fa-solid fa-address-book"></i>
                         pridėti sąskaitą
                     </a>
