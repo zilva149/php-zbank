@@ -1,12 +1,13 @@
 <?php
 session_start();
 
+require __DIR__ . '/inc/functions.php';
+
 $title = 'ZBank | Nuskaičiuoti Lėšų';
 $_SESSION['admin'] = 'Jonas';
 
 if (!isset($_SESSION['admin'])) {
-    header('Location: href="http://localhost:8080/intro/personal-projects/php-zbank/login.php"');
-    die;
+    redirect('login.php');
 }
 
 if (!file_exists(__DIR__ . '/users.json')) {
@@ -29,8 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'modal_color' => '#f01616'
         ];
 
-        header("Location: http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=$id");
-        die;
+        redirect("withdraw-money.php?id=$id");
     } else if ($amount > 0) {
         $user->money -= $amount;
 
@@ -44,8 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'modal_color' => '#35bd0f'
         ];
 
-        header("Location: http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=$id");
-        die;
+        redirect("withdraw-money.php?id=$id");
     } else {
         $_SESSION['modal'] = [
             'name' => 'error',
@@ -53,8 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'modal_color' => '#f01616'
         ];
 
-        header("Location: http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=$id");
-        die;
+        redirect("withdraw-money.php?id=$id");
     }
 }
 

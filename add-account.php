@@ -1,10 +1,11 @@
 <?php
 session_start();
 
+require __DIR__ . '/inc/functions.php';
+
 $title = 'ZBank | Pridėti Sąskaitą';
 $active = 'add-acc';
 
-require __DIR__ . '/inc/functions.php';
 
 $_SESSION['admin'] = 'Jonas';
 
@@ -29,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         "money" => 0
     ];
 
-    if (preg_match('/^[a-z\'ąčęėįšųū]+$/i', $name)) {
+    if (preg_match('/^[a-z\'ąčęėįšųū\s]{4,}$/i', $name)) {
         $newUser['name'] = $name;
     } else {
         $_SESSION['modal_sm'] = [
@@ -41,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('add-account.php');
     }
 
-    if (preg_match('/^[a-z\'ąčęėįšųū]+$/i', $surname)) {
+    if (preg_match('/^[a-z\'ąčęėįšųū\s]{4,}$/i', $surname)) {
         $newUser['surname'] = $surname;
     } else {
         $_SESSION['modal_sm'] = [

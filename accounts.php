@@ -1,14 +1,15 @@
 <?php
 session_start();
 
+require __DIR__ . '/inc/functions.php';
+
 $title = 'ZBank | Sąskaitų Sąrašas';
 $active = 'acc-list';
 
 $_SESSION['admin'] = 'Jonas';
 
 if (!isset($_SESSION['admin'])) {
-    header('Location: href="http://localhost:8080/intro/personal-projects/php-zbank/login.php"');
-    die;
+    redirect('login.php');
 }
 
 if (!file_exists(__DIR__ . '/users.json')) {
@@ -39,8 +40,7 @@ if (isset($_GET['id'])) {
 
     file_put_contents(__DIR__ . '/users.json', json_encode(array_values((array) $users)));
 
-    header("Location: http://localhost:8080/intro/personal-projects/php-zbank/accounts.php");
-    die;
+    redirect('accounts.php');
 }
 
 require(__DIR__ . '/inc/header.php');
