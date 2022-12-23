@@ -1,0 +1,94 @@
+/* CSS VARIABLES */
+
+:root {
+    --lgray: #e1e1f3;
+    --dgray: #9292ae;
+    --orange: #ea4c3c;
+    --dblue: #2a2a51;
+    --lblue: #747399;
+    --pink: #dba09e;
+    --transition: all ease-out 0.25s;
+}
+
+/* CSS RESET */
+
+body,
+body *,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: var(--dblue);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+p {
+    font-size: 1.6rem;
+}
+
+h1 {
+    font-size: 3.2rem;
+}
+
+h2 {
+    font-size: 2.6rem;
+}
+
+h3 {
+    font-size: 2.2rem;
+}
+
+h4 {
+    font-size: 2.0rem;
+}
+
+h5 {
+    font-size: 1.6rem;
+}
+
+h6 {
+    font-size: 1.2rem;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+label,
+button,
+textarea,
+select {
+    font-family: inherit;
+    font-size: 1.6rem;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.4rem;
+}

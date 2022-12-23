@@ -135,9 +135,6 @@ require(__DIR__ . '/inc/header.php');
             <button type="submit" class="btn form-submit-btn">išsaugoti</button>
         </div>
     </form>
-    <?php require(__DIR__ . '/inc/footer.php'); ?>
 </main>
 
-</body>
-
-</html>
+<?php require(__DIR__ . '/inc/footer.php'); ?>

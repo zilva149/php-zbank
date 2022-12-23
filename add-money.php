@@ -20,7 +20,7 @@ if (!file_exists(__DIR__ . '/users.json')) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['amount'])) {
-    $amount = (float) $_POST['amount'];
+    $amount = round((float) $_POST['amount'], 2);
     if ($amount > 0) {
         $user->money += $amount;
 
@@ -49,26 +49,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['amount'])) {
 require(__DIR__ . '/inc/header.php');
 ?>
 
-<main class="main-add-money flex flex-col">
-    <div class="admin flex">
-        <i class="fa-solid fa-user"></i>
-        <?= $_SESSION['admin'] ?>
-    </div>
-    <?php if (isset($_SESSION['modal'])) :
-        require(__DIR__ . '/inc/modal.php');
-        unset($_SESSION['modal']);
-    endif ?>
-    <section class="add-card flex flex-col">
-        <div class="add-card-info flex">
-            <p class="add-card-name"><?= $user->name . ' ' . $user->surname ?></p>
-            <p class="add-card-money">&#8364;<?= number_format($user->money, 2, '.', ',') ?></p>
+<div class="wrapper container flex flex-col">
+    <main class="main-add-money">
+        <div class="admin flex">
+            <i class="fa-solid fa-user"></i>
+            <?= $_SESSION['admin'] ?>
         </div>
-        <form action="http://localhost:8080/intro/personal-projects/php-zbank/add-money.php?id=<?= $id ?>" method="post" class="add-card-form flex">
-            <input type="text" name="amount" class="add-card-input input" autocomplete="off" placeholder="Įveskite sumą...">
-            <button type="submit" class="btn submit-btn">pridėti</button>
-        </form>
-    </section>
-</main>
+        <section class="add-content">
+            <?php if (isset($_SESSION['modal'])) :
+                require(__DIR__ . '/inc/modal.php');
+                unset($_SESSION['modal']);
+            endif ?>
+            <article class="add-card flex flex-col">
+                <div class="add-card-info flex">
+                    <p class="add-card-name"><?= $user->name . ' ' . $user->surname ?></p>
+                    <p class="add-card-money">&#8364;<?= number_format($user->money, 2, '.', ',') ?></p>
+                </div>
+                <form action="http://localhost:8080/intro/personal-projects/php-zbank/add-money.php?id=<?= $id ?>" method="post" class="add-card-form flex">
+                    <input type="text" name="amount" class="add-card-input input" autocomplete="off" placeholder="Įveskite sumą...">
+                    <button type="submit" class="btn submit-btn">pridėti</button>
+                </form>
+            </article>
+        </section>
+    </main>
+
+    <?php require(__DIR__ . '/inc/footer.php'); ?>
+</div>
 
 <script>
     const input = document.querySelector('input[name="amount"]');

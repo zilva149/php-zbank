@@ -20,7 +20,7 @@ if (!file_exists(__DIR__ . '/users.json')) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_GET['id'])) {
         foreach ($users as $key => $user) {
-            if ($user->id == $_GET['id'] && $user->money == 0) {
+            if ($user->id == $_GET['id'] && $user->money <= 0.01) {
                 unset($users[$key]);
                 $_SESSION['modal'] = [
                     'name' => 'success',
@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         file_put_contents(__DIR__ . '/users.json', json_encode(array_values((array) $users)));
-
         redirect('accounts.php');
     }
 }
@@ -45,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 require(__DIR__ . '/inc/header.php');
 ?>
 
-<main class="main-account">
-    <div class="container flex flex-col">
+<div class="wrapper container flex flex-col">
+    <main class="main-account">
         <div class="admin flex">
             <i class="fa-solid fa-user"></i>
             <?= $_SESSION['admin'] ?>
@@ -55,38 +54,93 @@ require(__DIR__ . '/inc/header.php');
             require(__DIR__ . '/inc/modal.php');
             unset($_SESSION['modal']);
         endif ?>
-        <?php if (count($users) != 0) :
-            foreach ($users as $i => $user) : ?>
-                <article class="user flex flex-col">
-                    <div class="user-header flex">
-                        <div class="user-header-info flex">
-                            <p class="acc-name"><?= $user->surname . ', ' . $user->name ?></p>
-                            <p class="acc-money">&#8364;<?= number_format($user->money, 2, '.', ',') ?></p>
-                        </div>
-                        <div class="user-header-buttons flex" style="gap: 10px">
-                            <form action="http://localhost:8080/intro/personal-projects/php-zbank/add-money.php?id=<?= $user->id ?>" method="post">
-                                <button class="btn">pridėti lėšų</button>
-                            </form>
-                            <form action="http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=<?= $user->id ?>" method="post">
-                                <button class="btn">nuskaičiuoti lėšas</button>
-                            </form>
-                            <form action="http://localhost:8080/intro/personal-projects/php-zbank/accounts.php?id=<?= $user->id ?>" method="post">
-                                <button class="btn">ištrinti</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="user-footer flex">
+        <?php if (count($users) != 0) : ?>
+            <section class="users grid">
+                <?php foreach ($users as $i => $user) : ?>
+                    <article class="user grid">
+                        <p class="acc-name"><?= $user->surname . ', ' . $user->name ?></p>
                         <p class="acc-id"><span class="highlight">ID: </span><?= $user->id ?></p>
                         <p class="acc-idnum"><span class="highlight">Asmens kodas: </span><?= $user->id_num ?></p>
-                        <p class="acc-bank"><span class="highlight">IBAN: </span><?= $user->bank_acc ?></p>
-                    </div>
-                </article>
-            <?php endforeach ?>
+                        <p class="acc-iban"><span class="highlight">IBAN: </span><?= $user->bank_acc ?></p>
+                        <p class="acc-money">&#8364;<?= number_format($user->money, 2, '.', ',') ?></p>
+                        <div class="user-btns flex">
+                            <form action="http://localhost:8080/intro/personal-projects/php-zbank/add-money.php?id=<?= $user->id ?>" method="post">
+                                <button type="submit" class="btn plus-btn">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </form>
+                            <form action="http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=<?= $user->id ?>" method="post">
+                                <button type="submit" class="btn minus-btn">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                            </form>
+                            <form action="http://localhost:8080/intro/personal-projects/php-zbank/accounts.php?id=<?= $user->id ?>" method="post">
+                                <button type="submit" class="btn delete-btn">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </article>
+                <?php endforeach ?>
+            </section>
         <?php endif ?>
-    </div>
+    </main>
+
     <?php require(__DIR__ . '/inc/footer.php'); ?>
-</main>
+</div>
 
-</body>
+<script>
+    const plusBtns = document.querySelectorAll('.plus-btn');
+    const minusBtns = document.querySelectorAll('.minus-btn');
+    const deleteBtns = document.querySelectorAll('.delete-btn');
 
-</html>
+    window.addEventListener('DOMContentLoaded', () => {
+        const width = window.innerWidth;
+        if (width >= 768) {
+            plusBtns.forEach((btn) => {
+                btn.innerHTML = 'pridėti';
+            });
+            minusBtns.forEach((btn) => {
+                btn.innerHTML = 'nuskaičiuoti';
+            });
+            deleteBtns.forEach((btn) => {
+                btn.innerHTML = 'ištrinti';
+            });
+        } else {
+            plusBtns.forEach((btn) => {
+                btn.innerHTML = `<i class="fa-solid fa-plus"></i>`;
+            });
+            minusBtns.forEach((btn) => {
+                btn.innerHTML = `<i class="fa-solid fa-minus"></i>`;
+            });
+            deleteBtns.forEach((btn) => {
+                btn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+            });
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        const width = window.innerWidth;
+        if (width >= 768) {
+            plusBtns.forEach((btn) => {
+                btn.innerHTML = 'pridėti';
+            });
+            minusBtns.forEach((btn) => {
+                btn.innerHTML = 'nuskaičiuoti';
+            });
+            deleteBtns.forEach((btn) => {
+                btn.innerHTML = 'ištrinti';
+            });
+        } else {
+            plusBtns.forEach((btn) => {
+                btn.innerHTML = `<i class="fa-solid fa-plus"></i>`;
+            });
+            minusBtns.forEach((btn) => {
+                btn.innerHTML = `<i class="fa-solid fa-minus"></i>`;
+            });
+            deleteBtns.forEach((btn) => {
+                btn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+            });
+        }
+    });
+</script>

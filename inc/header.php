@@ -20,13 +20,21 @@ if (isset($_GET['logout'])) {
     <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <!-- custom css -->
     <link rel="stylesheet" href="./assets/css/main.css">
+    <!-- scripts -->
+    <script src="./assets/js/app.js" defer></script>
 </head>
 
 <body>
 
     <?php if (!isset($isLogin)) : ?>
+        <button class="burger-menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
         <header class="header">
             <div class="container">
+                <button class="burger-close">
+                    <i class="fa-solid fa-times"></i>
+                </button>
                 <div class="header-logo">ZBank</div>
                 <nav class="nav flex flex-col">
                     <a href="http://localhost:8080/intro/personal-projects/php-zbank/accounts.php" class="nav-link <?= $active == 'acc-list' ? 'active' : '' ?>">
@@ -55,10 +63,12 @@ if (isset($_GET['logout'])) {
                         </p>
                     </div>
                 </div>
-                <button class="logout-btn"><a href=<?= $_SERVER['PHP_SELF'] . '?logout' ?>>
+                <button class="logout-btn">
+                    <a href=<?= $_SERVER['PHP_SELF'] . '?logout' ?>>
                         <i class="fa-solid fa-right-from-bracket"></i>
                         atsijungti
-                    </a></button>
+                    </a>
+                </button>
             </div>
         </header>
     <?php endif ?>
