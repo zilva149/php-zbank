@@ -3,15 +3,12 @@ session_start();
 
 require __DIR__ . '/inc/functions.php';
 
-$title = 'ZBank | Pridėti Sąskaitą';
-$active = 'add-acc';
-
-
-$_SESSION['admin'] = 'Jonas';
-
 if (!isset($_SESSION['admin'])) {
     redirect('login.php');
-}
+};
+
+$title = 'ZBank | Pridėti Sąskaitą';
+$active = 'add-acc';
 
 if (!file_exists(__DIR__ . '/users.json')) {
     $users = [];
@@ -23,10 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'] ?? '';
     $surname = $_POST['surname'] ?? '';
     $id = $_POST['id'] ?? '';
+    $iban = $_POST['iban'] ?? '';
 
     $newUser = [
         "id" => generateID($users),
-        "bank_acc" => generateIBAN($users),
+        "bank_acc" => $iban,
         "money" => 0
     ];
 
@@ -54,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('add-account.php');
     }
 
-    if (preg_match('/^[1-6][0-9]{2}(0[1-9]|1[0-2])([0-2][1-9]|3[01])[0-9]{4}$/', $id)) {
+    if (preg_match('/^[1-6]\d{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])\d{4}$/', $id)) {
         if (validateIDNum($users, $id)) {
             $newUser['id_num'] = $id;
         } else {
@@ -85,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'modal_color' => '#35bd0f',
     ];
 
-    redirect('add-account.php');
+    redirect('accounts.php');
 }
 
 require(__DIR__ . '/inc/header.php');
@@ -97,10 +95,6 @@ require(__DIR__ . '/inc/header.php');
         <?= $_SESSION['admin'] ?>
     </div>
     <form action="http://localhost:8080/intro/personal-projects/php-zbank/add-account.php" method="post" class="form flex flex-col">
-        <?php if (isset($_SESSION['modal'])) :
-            require(__DIR__ . '/inc/modal.php');
-            unset($_SESSION['modal']);
-        endif ?>
         <h1 class="title">Nauja sąskaita</h1>
         <div class="form-info grid">
             <div class="form-name-container input-container">
@@ -122,6 +116,14 @@ require(__DIR__ . '/inc/header.php');
             <div class="form-id-container input-container">
                 <label for="id" class="label">Asmens kodas</label>
                 <input type="text" name="id" class="input form-input" id="id">
+                <?php if (isset($_SESSION['modal_sm']) && $_SESSION['modal_sm']['modal_place'] == 'id') :
+                    require(__DIR__ . '/inc/modal-sm.php');
+                    unset($_SESSION['modal_sm']);
+                endif ?>
+            </div>
+            <div class="form-id-container input-container">
+                <label for="iban" class="label">IBAN</label>
+                <input type="text" name="iban" class="input form-input" id="iban" value="<?= generateIBAN($users) ?>" readonly>
                 <?php if (isset($_SESSION['modal_sm']) && $_SESSION['modal_sm']['modal_place'] == 'id') :
                     require(__DIR__ . '/inc/modal-sm.php');
                     unset($_SESSION['modal_sm']);

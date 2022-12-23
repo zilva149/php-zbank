@@ -1,3 +1,13 @@
+<?php
+
+if (isset($_GET['logout'])) {
+    session_unset();
+    session_destroy();
+    redirect('login.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +22,7 @@
     <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 
-<body class="flex" style="justify-content: flex-start;">
+<body>
 
     <?php if (!isset($isLogin)) : ?>
         <header class="header">
@@ -47,7 +57,7 @@
                 </div>
                 <button class="logout-btn"><a href=<?= $_SERVER['PHP_SELF'] . '?logout' ?>>
                         <i class="fa-solid fa-right-from-bracket"></i>
-                        log out
+                        atsijungti
                     </a></button>
             </div>
         </header>

@@ -3,13 +3,11 @@ session_start();
 
 require __DIR__ . '/inc/functions.php';
 
-$title = 'ZBank | Pridėti Lėšų';
-
-$_SESSION['admin'] = 'Jonas';
-
 if (!isset($_SESSION['admin'])) {
     redirect('login.php');
-}
+};
+
+$title = 'ZBank | Pridėti Lėšų';
 
 if (!file_exists(__DIR__ . '/users.json')) {
     $user = [];
@@ -21,7 +19,7 @@ if (!file_exists(__DIR__ . '/users.json')) {
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['amount'])) {
     $amount = (float) $_POST['amount'];
     if ($amount > 0) {
         $user->money += $amount;
@@ -36,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'modal_color' => '#35bd0f'
         ];
 
-        redirect("add-money.php?id=$id");
+        redirect('accounts.php');
     } else {
         $_SESSION['modal'] = [
             'name' => 'error',
@@ -71,3 +69,8 @@ require(__DIR__ . '/inc/header.php');
         </form>
     </section>
 </main>
+
+<script>
+    const input = document.querySelector('input[name="amount"]');
+    window.addEventListener('DOMContentLoaded', () => input.focus());
+</script>
