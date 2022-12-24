@@ -25,6 +25,13 @@ html {
     font-family: 'Inter', sans-serif;
     font-size: 10px;
     color: var(--dblue);
+    min-height: 100vh;
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    height: 100%;
 }
 
 p,

@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 require(__DIR__ . '/inc/header.php');
 ?>
 
-<div class="wrapper container flex flex-col">
-    <main class="main-account">
+<div class="wrapper flex flex-col">
+    <main class="main-account container">
         <div class="admin flex">
             <i class="fa-solid fa-user"></i>
             <?= $_SESSION['admin'] ?>
@@ -144,3 +144,7 @@ require(__DIR__ . '/inc/header.php');
         }
     });
 </script>
+
+</body>
+
+</html>
