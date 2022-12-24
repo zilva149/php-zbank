@@ -17,28 +17,26 @@ if (!file_exists(__DIR__ . '/users.json')) {
     usort($users, fn ($a, $b) => $a->surname <=> $b->surname);
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_GET['id'])) {
-        foreach ($users as $key => $user) {
-            if ($user->id == $_GET['id'] && $user->money <= 0.01) {
-                unset($users[$key]);
-                $_SESSION['modal'] = [
-                    'name' => 'success',
-                    'modal_message' => 'Sąskaita sėkmingai ištrinta',
-                    'modal_color' => '#35bd0f'
-                ];
-            } else {
-                $_SESSION['modal'] = [
-                    'name' => 'error',
-                    'modal_message' => 'Sąskaitos, kurioje yra pinigų, negalima ištrinti',
-                    'modal_color' => '#f01616'
-                ];
-            }
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['id'])) {
+    foreach ($users as $key => $user) {
+        if ($user->id == $_GET['id'] && $user->money <= 0.01) {
+            unset($users[$key]);
+            $_SESSION['modal'] = [
+                'name' => 'success',
+                'modal_message' => 'Sąskaita sėkmingai ištrinta',
+                'modal_color' => '#35bd0f'
+            ];
+        } else {
+            $_SESSION['modal'] = [
+                'name' => 'error',
+                'modal_message' => 'Sąskaitos, kurioje yra pinigų, negalima ištrinti',
+                'modal_color' => '#f01616'
+            ];
         }
-
-        file_put_contents(__DIR__ . '/users.json', json_encode(array_values((array) $users)));
-        redirect('accounts.php');
     }
+
+    file_put_contents(__DIR__ . '/users.json', json_encode(array_values((array) $users)));
+    redirect('accounts.php');
 }
 
 require(__DIR__ . '/inc/header.php');
@@ -64,16 +62,12 @@ require(__DIR__ . '/inc/header.php');
                         <p class="acc-iban"><span class="highlight">IBAN: </span><?= $user->bank_acc ?></p>
                         <p class="acc-money">&#8364;<?= number_format($user->money, 2, '.', ',') ?></p>
                         <div class="user-btns flex">
-                            <form action="http://localhost:8080/intro/personal-projects/php-zbank/add-money.php?id=<?= $user->id ?>" method="post">
-                                <button type="submit" class="btn plus-btn">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
-                            </form>
-                            <form action="http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=<?= $user->id ?>" method="post">
-                                <button type="submit" class="btn minus-btn">
-                                    <i class="fa-solid fa-minus"></i>
-                                </button>
-                            </form>
+                            <a href="http://localhost:8080/intro/personal-projects/php-zbank/add-money.php?id=<?= $user->id ?>" class="btn plus-btn">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                            <a href="http://localhost:8080/intro/personal-projects/php-zbank/withdraw-money.php?id=<?= $user->id ?>" class="btn minus-btn">
+                                <i class="fa-solid fa-minus"></i>
+                            </a>
                             <form action="http://localhost:8080/intro/personal-projects/php-zbank/accounts.php?id=<?= $user->id ?>" method="post">
                                 <button type="submit" class="btn delete-btn">
                                     <i class="fa-solid fa-trash"></i>

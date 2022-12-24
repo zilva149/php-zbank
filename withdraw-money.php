@@ -58,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['amount'])) {
 require(__DIR__ . '/inc/header.php');
 ?>
 
-<div class="wrapper container flex flex-col">
-    <main class="main-add-money">
+<div class="wrapper flex flex-col">
+    <main class="main-add-money container">
         <div class="admin flex">
             <i class="fa-solid fa-user"></i>
             <?= $_SESSION['admin'] ?>
@@ -89,3 +89,7 @@ require(__DIR__ . '/inc/header.php');
     const input = document.querySelector('input[name="amount"]');
     window.addEventListener('DOMContentLoaded', () => input.focus());
 </script>
+
+</body>
+
+</html>

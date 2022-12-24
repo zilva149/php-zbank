@@ -80,3 +80,7 @@ require(__DIR__ . '/inc/header.php');
     const input = document.querySelector('input[name="amount"]');
     window.addEventListener('DOMContentLoaded', () => input.focus());
 </script>
+
+</body>
+
+</html>
