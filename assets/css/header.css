@@ -8,6 +8,7 @@
     padding: 0 1.5rem;
     transform: translateX(-100%);
     transition: var(--transition);
+    z-index: 99;
 }
 
 .visible {
@@ -17,13 +18,24 @@
 .visible::before {
     content: '';
     position: absolute;
+    display: block;
     top: 0;
     left: 0;
     height: 100%;
     width: 100vw;
-    background: var(--dblue);
+    background-color: var(--dblue);
     opacity: 0.9;
-    z-index: -1;
+    z-index: -10;
+}
+
+.visible .container {
+    z-index: 199;
+}
+
+.header .container {
+    height: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .burger-close {
@@ -152,11 +164,9 @@
 }
 
 .logout-btn {
-    position: absolute;
-    bottom: 50px;
-    left: 10%;
     background-color: transparent;
     border: none;
+    padding: 1rem 0;
 }
 
 .logout-btn a {

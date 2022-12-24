@@ -86,6 +86,45 @@
     justify-self: end;
 }
 
+@media screen and (min-width: 1200px) {
+    .user {
+        grid-template-columns: repeat(10, 1fr);
+    }
+
+    .acc-name {
+        grid-column: 1/ span 2;
+        grid-row: 1/ span 1;
+    }
+    
+    .acc-id {
+        grid-column: 1/ span 2;
+        grid-row: 2/ span 1;
+    }
+    
+    .acc-idnum {
+        grid-column: 3/ span 4;
+        grid-row: 2/ span 1;
+        justify-self: center;
+    }
+    
+    .acc-iban {
+        grid-column: 7/ span 4;
+        grid-row: 2/ span 1;
+        justify-self: end;
+    }
+    
+    .acc-money {
+        grid-column: 3/ span 4;
+        grid-row: 1/ span 1;
+        justify-self: center;
+    }
+    
+    .user-btns {
+        grid-column: 7/ span 4;
+        grid-row: 1/ span 1;
+    }
+}
+
 .highlight {
     font-weight: 700;
 }
@@ -167,6 +206,25 @@
 
 /* LOGIN - MAIN */
 
-.main-login {
+.login {
     height: 100%;
+    position: relative;
+    background-image: url('../img/bank.jpg');
+    background-size: cover;
+}
+
+.login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dblue);
+    opacity: 0.6;
+}
+
+.login .form {
+    position: relative;
+    z-index: 99;
 }
