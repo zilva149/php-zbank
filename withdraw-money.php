@@ -59,10 +59,15 @@ require(__DIR__ . '/inc/header.php');
 ?>
 
 <div class="wrapper flex flex-col">
-    <main class="main-add-money container">
+    <main class="container">
         <div class="admin flex">
-            <i class="fa-solid fa-user"></i>
-            <?= $_SESSION['admin'] ?>
+            <button class="burger-menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="admin-info">
+                <i class="fa-solid fa-user"></i>
+                <?= $_SESSION['admin'] ?>
+            </div>
         </div>
         <section class="add-content">
             <?php if (isset($_SESSION['modal'])) :

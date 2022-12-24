@@ -43,10 +43,15 @@ require(__DIR__ . '/inc/header.php');
 ?>
 
 <div class="wrapper flex flex-col">
-    <main class="main-account container">
+    <main class="container">
         <div class="admin flex">
-            <i class="fa-solid fa-user"></i>
-            <?= $_SESSION['admin'] ?>
+            <button class="burger-menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="admin-info flex">
+                <i class="fa-solid fa-user"></i>
+                <?= $_SESSION['admin'] ?>
+            </div>
         </div>
         <?php if (isset($_SESSION['modal'])) :
             require(__DIR__ . '/inc/modal.php');
@@ -90,7 +95,7 @@ require(__DIR__ . '/inc/header.php');
 
     window.addEventListener('DOMContentLoaded', () => {
         const width = window.innerWidth;
-        if (width >= 768) {
+        if (width >= 992) {
             plusBtns.forEach((btn) => {
                 btn.innerHTML = 'pridėti';
             });
@@ -115,7 +120,7 @@ require(__DIR__ . '/inc/header.php');
 
     window.addEventListener('resize', () => {
         const width = window.innerWidth;
-        if (width >= 768) {
+        if (width >= 992) {
             plusBtns.forEach((btn) => {
                 btn.innerHTML = 'pridėti';
             });

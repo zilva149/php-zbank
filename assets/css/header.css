@@ -26,23 +26,6 @@
     z-index: -1;
 }
 
-.burger-menu {
-    position: absolute;
-    top: 25px;
-    left: 30px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    transform: scale(1.75);
-    cursor: pointer;
-    color: var(--dblue);
-    transition: var(--transition);
-}
-
-.burger-menu:hover {
-    color: var(--dgray);
-}
-
 .burger-close {
     position: absolute;
     top: 25px;
@@ -61,7 +44,7 @@
     color: var(--dgray);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
     .header {
         width: 300px;
         max-width: 40%;

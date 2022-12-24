@@ -90,10 +90,15 @@ require(__DIR__ . '/inc/header.php');
 ?>
 
 <div class="wrapper flex flex-col">
-    <main class="main-add-account container">
+    <main class="container">
         <div class="admin flex">
-            <i class="fa-solid fa-user"></i>
-            <?= $_SESSION['admin'] ?>
+            <button class="burger-menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="admin-info">
+                <i class="fa-solid fa-user"></i>
+                <?= $_SESSION['admin'] ?>
+            </div>
         </div>
         <form action="http://localhost:8080/intro/personal-projects/php-zbank/add-account.php" method="post" class="form flex flex-col">
             <h1 class="title">Nauja sąskaita</h1>

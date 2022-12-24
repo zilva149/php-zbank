@@ -27,9 +27,6 @@ if (isset($_GET['logout'])) {
 <body>
 
     <?php if (!isset($isLogin)) : ?>
-        <button class="burger-menu">
-            <i class="fa-solid fa-bars"></i>
-        </button>
         <header class="header">
             <div class="container">
                 <button class="burger-close">
