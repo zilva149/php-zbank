@@ -128,7 +128,7 @@ require(__DIR__ . '/inc/header.php');
                     endif ?>
                 </div>
                 <div class="form-id-container input-container">
-                    <label for="iban" class="label">IBAN</label>
+                    <label for="iban" class="label">Sąskaitos Nr.</label>
                     <input type="text" name="iban" class="input form-input" id="iban" value="<?= generateIBAN($users) ?>" readonly>
                     <?php if (isset($_SESSION['modal_sm']) && $_SESSION['modal_sm']['modal_place'] == 'id') :
                         require(__DIR__ . '/inc/modal-sm.php');

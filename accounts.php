@@ -19,14 +19,14 @@ if (!file_exists(__DIR__ . '/users.json')) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['id'])) {
     foreach ($users as $key => $user) {
-        if ($user->id == $_GET['id'] && $user->money <= 0.01) {
-            unset($users[$key]);
+        if ($user->id == $_GET['id'] && $user->money <= 0) {
             $_SESSION['modal'] = [
                 'name' => 'success',
                 'modal_message' => 'Sąskaita sėkmingai ištrinta',
                 'modal_color' => '#35bd0f'
             ];
-        } else {
+            unset($users[$key]);
+        } else if ($user->id == $_GET['id']) {
             $_SESSION['modal'] = [
                 'name' => 'error',
                 'modal_message' => 'Sąskaitos, kurioje yra pinigų, negalima ištrinti',
@@ -64,7 +64,7 @@ require(__DIR__ . '/inc/header.php');
                         <p class="acc-name"><?= $user->surname . ', ' . $user->name ?></p>
                         <p class="acc-id"><span class="highlight">ID: </span><?= $user->id ?></p>
                         <p class="acc-idnum"><span class="highlight">Asmens kodas: </span><?= $user->id_num ?></p>
-                        <p class="acc-iban"><span class="highlight">IBAN: </span><?= $user->bank_acc ?></p>
+                        <p class="acc-iban"><span class="highlight">Sąskaitos Nr.: </span><?= $user->bank_acc ?></p>
                         <p class="acc-money">&#8364;<?= number_format($user->money, 2, '.', ',') ?></p>
                         <div class="user-btns flex">
                             <a href="http://localhost:8080/intro/personal-projects/php-zbank/add-money.php?id=<?= $user->id ?>" class="btn plus-btn">
