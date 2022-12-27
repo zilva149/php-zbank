@@ -20,7 +20,18 @@ if (!file_exists(__DIR__ . '/users.json')) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['amount'])) {
-    $amount = round((float) $_POST['amount'], 2);
+
+    if (preg_match('/^[+-]?(?:[0-9]*[.])?[0-9]+$/', $_POST['amount'])) {
+        $amount = (float) $_POST['amount'];
+    } else {
+        $_SESSION['modal'] = [
+            'name' => 'error',
+            'modal_message' => 'Prašome įvesti validžią sumą',
+            'modal_color' => '#f01616'
+        ];
+
+        redirect("add-money.php?id=$id");
+    }
 
     if ($amount > $user->money) {
         $_SESSION['modal'] = [
@@ -31,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['amount'])) {
 
         redirect("withdraw-money.php?id=$id");
     } else if ($amount > 0) {
-        $user->money -= $amount;
+        $user->money = round($user->money - $amount, 2);
 
         $users = array_map(fn ($el) => $el->id == $user->id ? $user : $el, $users);
 

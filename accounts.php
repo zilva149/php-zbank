@@ -82,6 +82,8 @@ require(__DIR__ . '/inc/header.php');
                     </article>
                 <?php endforeach ?>
             </section>
+        <?php else : ?>
+            <h1 class="empty">Sąskaitų nėra</h1>
         <?php endif ?>
     </main>
 

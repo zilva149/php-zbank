@@ -53,11 +53,11 @@ if (isset($_GET['logout'])) {
                             </p>
                             <p class="contacts-location">
                                 <i class="fa-solid fa-location-dot"></i>
-                                pensininkų g. 14-3, Vilnius
+                                Pensininkų g. 14-3, Vilnius
                             </p>
                             <p class="contacts-hours">
                                 <i class="fa-solid fa-clock"></i>
-                                pr - pn 09-18, št - sk 10-17
+                                Pr - Pn 09-18, Št - Sk 10-17
                             </p>
                         </div>
                     </div>

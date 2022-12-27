@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('add-account.php');
     }
 
-    if (preg_match('/^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\'\s]{4,}$/', $surname)) {
+    if (preg_match('/^[A-Z][a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\'\s]{4,}$/', $surname)) {
         $newUser['surname'] = $surname;
     } else {
         $_SESSION['modal_sm'] = [
@@ -95,7 +95,7 @@ require(__DIR__ . '/inc/header.php');
             <button class="burger-menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <div class="admin-info">
+            <div class="admin-info flex">
                 <i class="fa-solid fa-user"></i>
                 <?= $_SESSION['admin'] ?>
             </div>

@@ -28,8 +28,12 @@
 }
 
 .admin-info {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     gap: 1rem;
+}
+
+.admin-info i {
+    font-size: 1.8rem;
 }
 
 @media screen and (min-width: 992px) {
@@ -50,6 +54,11 @@
 
 .burger-menu:hover {
     color: var(--dgray);
+}
+
+.empty {
+    text-align: center;
+    padding: 4rem 0;
 }
 
 .user {
