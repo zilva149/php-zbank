@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         "money" => 0
     ];
 
-    if (preg_match('/^[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\'\s]{4,}$/', $name)) {
+    if (preg_match('/^([a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ]+([\s]?[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ]+|[\']?[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ]*)){4,}$/', $name)) {
         $newUser['name'] = $name;
     } else {
         $_SESSION['modal_sm'] = [
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('add-account.php');
     }
 
-    if (preg_match('/^[A-Z][a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\'\s]{4,}$/', $surname)) {
+    if (preg_match('/^([a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ]+([\s]?[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ]+|[\']?[a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ]*)){4,}$/', $surname)) {
         $newUser['surname'] = $surname;
     } else {
         $_SESSION['modal_sm'] = [
