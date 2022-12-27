@@ -8,6 +8,7 @@
     padding: 0 1.5rem;
     transform: translateX(-100%);
     transition: var(--transition);
+    padding-top: 2rem;
     z-index: 99;
 }
 
