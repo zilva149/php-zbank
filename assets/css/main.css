@@ -95,6 +95,17 @@
     justify-self: end;
 }
 
+@media screen and (max-width: 450px) {
+    .acc-money {
+        grid-column: 1 / span 4;
+    }
+    
+    .user-btns {
+        grid-column: 1 / span 4;
+        justify-self: start;
+    }
+}
+
 @media screen and (min-width: 1200px) {
     .user {
         grid-template-columns: repeat(10, 1fr);

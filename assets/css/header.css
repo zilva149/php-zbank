@@ -12,7 +12,7 @@
     z-index: 99;
 }
 
-.visible {
+.visible .header {
     transform: translateX(0);
 }
 
@@ -22,15 +22,11 @@
     display: block;
     top: 0;
     left: 0;
+    right: 0;
     height: 100%;
-    width: 100vw;
     background-color: var(--dblue);
     opacity: 0.9;
-    z-index: -10;
-}
-
-.visible .container {
-    z-index: 199;
+    z-index: 10;
 }
 
 .header .container {
@@ -55,6 +51,12 @@
 
 .burger-close:hover {
     color: var(--dgray);
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        width: 100%;
+    }
 }
 
 @media screen and (min-width: 992px) {
