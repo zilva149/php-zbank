@@ -33,7 +33,7 @@ if (isset($_GET['logout'])) {
                     <button class="burger-close">
                         <i class="fa-solid fa-times"></i>
                     </button>
-                    <div class="header-logo">ZBank</div>
+                    <a href="http://localhost:8080/intro/personal-projects/php-zbank/accounts.php" class="header-logo">ZBank</a>
                     <nav class="nav flex flex-col">
                         <a href="http://localhost:8080/intro/personal-projects/php-zbank/accounts.php" class="nav-link <?= $active == 'acc-list' ? 'active' : '' ?>">
                             <i class="fa-solid fa-list-ul"></i>

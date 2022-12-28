@@ -79,6 +79,8 @@
     position: relative;
     font-size: 4rem;
     margin-bottom: 6rem;
+    color: inherit;
+    display: block;
 }
 
 .header-logo::after {
